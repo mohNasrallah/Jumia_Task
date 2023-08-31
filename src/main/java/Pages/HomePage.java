@@ -4,6 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage {
     private WebDriver driver;
@@ -34,13 +38,14 @@ public class HomePage {
         driver.findElement(myAccount).getText();
             return null;
         }
-        public void hoverToBakery() throws InterruptedException {
+        public void hoverToBakery()   {
             WebElement mainMenu = driver.findElement(superMarket);
 
             Actions actions = new Actions(driver);
 
             actions.moveToElement(mainMenu);
-            Thread.sleep(3000);
+            WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(bakery));
 
             WebElement subMenu = driver.findElement(bakery);
 

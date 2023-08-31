@@ -26,7 +26,7 @@ public class SignInStep  {
 
         driver.get("https://www.jumia.com.eg/");
         driver.manage().window().maximize();
-        Thread.sleep(5000);
+
 
     }
 
@@ -40,7 +40,7 @@ public class SignInStep  {
     @And("fill my data and continue")
     public void fill_My_Data_and_Continue() throws InterruptedException {
         SignInPage sign = new SignInPage(driver);
-        sign.loginProcess("nasrlla1111@gmail.com","Mn@123123");
+        sign.loginProcess();
         Thread.sleep(5000);
         HomePage home = new HomePage(driver);
         home.hoverToBakery();
@@ -48,7 +48,7 @@ public class SignInStep  {
 
     }
     @And("hover to bakery")
-    public void hover_to_bakery() throws InterruptedException {
+    public void hover_to_bakery()  {
         HomePage home = new HomePage(driver);
         home.hoverToBakery();
 
@@ -68,5 +68,6 @@ public class SignInStep  {
     @Then("user should be SignIn successfully")
     public void user_Should_be_SignIn_Successfully() {
         System.out.println("items added successfully and the total price is correct");
+        driver.quit();
     }
 }

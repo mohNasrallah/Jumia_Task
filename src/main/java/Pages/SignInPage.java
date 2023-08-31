@@ -2,6 +2,10 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SignInPage {
     private WebDriver driver;
@@ -10,8 +14,9 @@ public class SignInPage {
 
     }
     By emailBox =By.className("mdc-text-field__input");
-    By passwordBox =By.xpath("//*[@id=\"card_password\"]/div[3]/label/input");
-    By confirmPassword=By.xpath("//*[@id=\"card_password\"]/div[4]/label/input");
+    By passwordBox =By.xpath("/html/body/div/div[4]/form/div/div[1]/div[3]/label/input");
+
+    By confirmPassword=By.xpath("/html/body/div/div[4]/form/div/div[1]/div[4]/label/input");
     By continueBtn = By.xpath("/html/body/div/div[4]/form/div/div[3]/div[2]/button/span[3]");
 
     By SubmitBtn = By.cssSelector("#card_password > div.actions > div > button > span.mdc-button__touch");
@@ -20,13 +25,13 @@ public class SignInPage {
 
     By lastName = By.id("input_last_name");
 
-    By PhoneNum = By.xpath("//*[@id=\"card_profile_details\"]/div[4]/div[2]/label/input");
+    By PhoneNum = By.xpath("/html/body/div/div[4]/form/div/div[2]/div[4]/div[2]/label/input");
 
     By continBtn = By.cssSelector("#card_profile_details > div.actions > div > button > span.mdc-button__touch");
 
-    By Gender = By.xpath("//*[@id=\"gender\"]/div[1]");
+    By Gender = By.xpath("/html/body/div/div[4]/form/div/div[3]/div/div[1]/div/div[1]");
 
-    By Male =By.xpath("//*[@id=\"gender\"]/div[2]/ul/li[1]");
+    By Male =By.xpath("/html/body/div/div[4]/form/div/div[3]/div/div[1]/div/div[2]/ul/li[1]");
 
     By date = By.id("input_birth_date");
 
@@ -34,25 +39,26 @@ public class SignInPage {
 
     By submit4 = By.cssSelector("#confirmBtn > span.mdc-button__touch");
 
-    By loginPass =By.xpath("//*[@id=\"passwordForm\"]/div/div[3]/label/input");
+    By loginPass =By.xpath("/html/body/div/div[4]/form/div/div[3]/label/input");
 
-    By loginBtn = By.xpath("//*[@id=\"loginButton\"]/span[3]");
-
-
+    By loginBtn = By.xpath("/html/body/div/div[4]/form/div/div[4]/div[2]/button/span[3]");
 
 
 
 
 
-    public void setEmail(String email){
-        driver.findElement(emailBox).sendKeys(email);
+
+
+    public void setEmail(){
+        driver.findElement(emailBox).sendKeys("nasrlaa14@gmail.com");
         driver.findElement(continueBtn).click();
 
     }
     public void setPassword() throws InterruptedException {
         driver.findElement(passwordBox).sendKeys("Mn@123123");
         driver.findElement(confirmPassword).sendKeys("Mn@123123");
-        Thread.sleep(3000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SubmitBtn));
         driver.findElement(SubmitBtn).click();
 
 
@@ -75,14 +81,16 @@ public class SignInPage {
     }
     public void checkboxandconfirm() throws InterruptedException {
         driver.findElement(checkbox).click();
-        Thread.sleep(3000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(submit4));
         driver.findElement(submit4).click();
     }
-    public void loginProcess(String email ,String password) throws InterruptedException {
-        driver.findElement(emailBox).sendKeys(email);
-        Thread.sleep(1000);
+    public void loginProcess() throws InterruptedException {
+        driver.findElement(emailBox).sendKeys("nasrlaa14@gmail.com");
         driver.findElement(continueBtn).click();
-        driver.findElement(loginPass).sendKeys(password);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(loginPass));
+        driver.findElement(loginPass).sendKeys("Mn@123123");
         driver.findElement(loginBtn).click();
 
     }

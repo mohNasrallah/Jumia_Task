@@ -53,7 +53,7 @@ public class SignUpStep {
     public void fill_my_data_and_submit() throws InterruptedException {
 
         SignInPage Sign = new SignInPage(driver);
-        Sign.setEmail("nasralaa@gmail.com");
+        Sign.setEmail();
         Thread.sleep(5000);
         Sign.setPassword();
         Thread.sleep(5000);
@@ -72,6 +72,7 @@ public class SignUpStep {
     @Then("user should be registered successfully")
     public void user_should_be_registered_successfully()  {
         System.out.println("user created successfully" );
+        driver.close();
 
 
 
